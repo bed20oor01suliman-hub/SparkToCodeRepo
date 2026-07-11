@@ -12,8 +12,9 @@ namespace CsharpTask4
         {
             //EASY(4 Tasks)
             //Task 1 - Personalized Welcome Function
-
-
+            Console.WriteLine("Welcome, Please write your name");
+            string PrintWelcome = Console.ReadLine();
+            Console.WriteLine(PrintWelcome);
             ///////////////////////////////////////////////////
             //Task 2 - Square Number Function
 
