@@ -257,7 +257,7 @@
 
                                     case 2:
                                         try
-                                        {
+                                        { 
                                             Console.WriteLine("Please Enter Withdraw Amount:");
                                             amount = double.Parse(Console.ReadLine());
 
