@@ -10,11 +10,14 @@ namespace CsharpTask4
     {
         static void Main(string[] args)
         {
+            //main function originak
+            //function before or after the main
             //EASY(4 Tasks)
             //Task 1 - Personalized Welcome Function
             Console.WriteLine("Welcome, Please write your name");
             string PrintWelcome = Console.ReadLine();
             Console.WriteLine(PrintWelcome);
+
             ///////////////////////////////////////////////////
             //Task 2 - Square Number Function
 
