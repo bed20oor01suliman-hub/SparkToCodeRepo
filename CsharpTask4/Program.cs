@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.Metrics;
+﻿using Microsoft.VisualBasic.FileIO;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Reflection.Emit;
 using System.Reflection.Metadata;
@@ -124,7 +125,14 @@ namespace CsharpTask4
 
         ///////////////////////////////////////////////////
         //Task 10 - Overloaded Area Calculator
-
+        public static double CalculateArea(double sideOfSquare)
+        {
+            return Math.Pow(sideOfSquare, 2);
+        }
+        //public static double CalculateArea(double length, double width)
+        //{
+        //    return length * width;
+        //}
 
 
         ///////////////////////////////////////////////////
@@ -222,6 +230,42 @@ namespace CsharpTask4
             Console.WriteLine("Multiply(int p1, int p2): " + firstResult);
             Console.WriteLine("Multiply(double d1, double d2): " + secondResult);
             Console.WriteLine("Multiply(int p1, int p2, int p3): " + thirdResult);
+
+            ///////////////////////////
+            Console.WriteLine("Choose from the menu:");
+            Console.WriteLine("1) Calculate Square Area");
+            Console.WriteLine("2) Calculate Rectangle Area");
+            Console.WriteLine("3) Exit");
+            int option = int.Parse(Console.ReadLine());
+
+            switch (option)
+            {
+                case 1:
+                    Console.WriteLine("Please write side of square : ");
+                    double sideOfSquare = double.Parse(Console.ReadLine());
+                    Console.WriteLine("Square Area = " + CalculateArea(sideOfSquare));
+                    break;
+
+                case 2:
+                    Console.WriteLine("Please enter length of rectangle : ");
+                    double length1 = double.Parse(Console.ReadLine());
+                    Console.WriteLine("Please enter width of rectangle : ");
+                    double width1 = double.Parse(Console.ReadLine());
+
+                    double rectangleAreaResult = CalculateArea(length1, width1);
+
+                    Console.WriteLine("Area result : " + rectangleAreaResult);
+                    break;
+
+                case 3:
+                    Console.WriteLine("exit...");
+                    break;
+
+                default:
+                    Console.WriteLine("Please choose a correct option");
+                    break;
+            }
+            
         }
     }
 }
