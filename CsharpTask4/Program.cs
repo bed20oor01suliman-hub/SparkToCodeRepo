@@ -160,10 +160,13 @@ namespace CsharpTask4
             catch (DivideByZeroException)
             {
                 Console.WriteLine("Divid by zero is not accepted try diffrent number");
+                return 0;
             }
         }
         public static void DisplayResult(string operationName,double displayResult)
         {
+            Console.WriteLine("Operation : "+ operationName);
+            Console.WriteLine("Result : "+ displayResult);
 
         }
         ///////////////////////////////////////////////////
@@ -251,7 +254,7 @@ namespace CsharpTask4
 
             int firstResult = Multiply(p1, p2);
             double secondResult = Multiply(d1, d2);
-            int thirdResult = Multiply(p1, p2 ,p3);
+            int thirdResult = Multiply(p1, p2, p3);
 
             Console.WriteLine("Multiply(int p1, int p2): " + firstResult);
             Console.WriteLine("Multiply(double d1, double d2): " + secondResult);
@@ -292,11 +295,74 @@ namespace CsharpTask4
                     Console.WriteLine("Please choose a correct option");
                     break;
             }
-            ///////////////////////////
-            /// 
+            /////////////////////////
+            //
+            bool exit = false;
+            while(exit != true)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Choose an option : ");
+                Console.WriteLine("1) Add operation");
+                Console.WriteLine("2) Subtract operation");
+                Console.WriteLine("3) MultiplyNumbers operation");
+                Console.WriteLine("4) DivideNumbers operation");
+                Console.WriteLine("5) Exit");
+                int option1 = int.Parse(Console.ReadLine());
+                switch (option1)
+                {
+                    case 1:
+                        Console.WriteLine("Please enter first number : ");
+                        double number1 = double.Parse(Console.ReadLine());
+                        Console.WriteLine("Please enter second number: ");
+                        double number2 = double.Parse(Console.ReadLine());
 
-        
+                        double result2 = Add(number1, number2);
+                        DisplayResult("Addition " , result2);
+                        break;
+                    case 2:
+                        Console.WriteLine("Please enter first number : ");
+                        double number3 = double.Parse(Console.ReadLine());
+                        Console.WriteLine("Please enter second number: ");
+                        double number4 = double.Parse(Console.ReadLine());
+
+                        
+                        double result3 = Subtract(number3, number4);
+                        DisplayResult("Subtraction " , result3);
+                        break;
+                    case 3:
+                        Console.WriteLine("Please enter first number : ");
+                        double number5 = double.Parse(Console.ReadLine());
+                        Console.WriteLine("Please enter second number: ");
+                        double number6 = double.Parse(Console.ReadLine());
+
+                        
+                        double result4 = MultiplyNumbers(number5, number6);
+                        DisplayResult("Multiplicstion " , result4);
+                        break;
+                    case 4:
+                        Console.WriteLine("Please enter first number : ");
+                        double number7 = double.Parse(Console.ReadLine());
+                        Console.WriteLine("Please enter second number: ");
+                        double number8 = double.Parse(Console.ReadLine());
+
+                        
+                        double result5 = DivideNumbers(number7, number8);
+                        DisplayResult("Divition " , result5);
+                        break;
+                    case 5:
+                        Console.WriteLine("exit...");
+                        exit = true;
+                        break;
+                    default:
+                        Console.WriteLine("Please choose a correct option.");
+                        break;
+
+                }
+            }
+            exit = true;
          
+            /////////////////////////
+            ///
 
         }
     }
