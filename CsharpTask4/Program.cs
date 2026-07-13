@@ -108,17 +108,18 @@ namespace CsharpTask4
 
         //HARD(2 Tasks)
         //Task 9 - Overloaded Multiply Function
+        //overloaded function
         public static int Multiply(int p1, int p2)
         {
-
+            return ( p1 * p2);
         }
-        public static double Multiply(double p3, double p4)
+        public static double Multiply(double d1, double d2)
         {
-
+            return (d1 * d2);
         }
-        public static void Multiply()
+        public static int Multiply(int p1, int p2,int p3)
         {
-
+            return ( p1 * p2 * p3);
         }
 
         ///////////////////////////////////////////////////
@@ -142,14 +143,14 @@ namespace CsharpTask4
             PrintWelcome(name);
 
             ///////////////////////////
-            
+
             Console.WriteLine("Please enter Number: ");
             int num = int.Parse(Console.ReadLine());
             int result = Square(num);
             Console.WriteLine("Result : " + result);
 
             ////////////////////////////
-            
+
             Console.WriteLine("Please enter Temperature in Celsius: ");
             double Celsius = double.Parse(Console.ReadLine());
             double Fahrenheit = CelsiusToFahrenheit(Celsius);
@@ -199,6 +200,28 @@ namespace CsharpTask4
             Console.WriteLine("Please enter Start Number: ");
             int startNum = int.Parse(Console.ReadLine());
             Countdown(startNum);
+
+            //////////////////////////
+            /// 
+            Console.WriteLine("Please write number1 integer : ");
+            int p1 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Please write number2 integer : ");
+            int p2 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Please write number3 integer : ");
+            int p3 = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Please write number1 double : ");
+            double d1 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Please write number2 : ");
+            double d2 = double.Parse(Console.ReadLine());
+
+            int firstResult = Multiply(p1, p2);
+            double secondResult = Multiply(d1, d2);
+            int thirdResult = Multiply(p1, p2 ,p3);
+
+            Console.WriteLine("Multiply(int p1, int p2): " + firstResult);
+            Console.WriteLine("Multiply(double d1, double d2): " + secondResult);
+            Console.WriteLine("Multiply(int p1, int p2, int p3): " + thirdResult);
         }
     }
 }
