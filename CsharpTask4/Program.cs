@@ -138,8 +138,34 @@ namespace CsharpTask4
         ///////////////////////////////////////////////////
         //ADVANCED(2 Tasks)
         //Task 11 - Function - Based Calculator
+        public static double Add(double num2,double num3)
+        {
+            return num2 + num3;
+        }
+        public static double Subtract(double num2,double num3)
+        {
+            return num2 - num3;
+        }
+        public static double MultiplyNumbers(double num2,double num3)
+        {
+            return num2 * num3;
+        }
+        public static double DivideNumbers(double num2,double num3)
+        {
+            try
+            {
+                return num2 / num3;
 
+            }
+            catch (DivideByZeroException)
+            {
+                Console.WriteLine("Divid by zero is not accepted try diffrent number");
+            }
+        }
+        public static void DisplayResult(string operationName,double displayResult)
+        {
 
+        }
         ///////////////////////////////////////////////////
         //Task 12 - Student Report Card Generator
 
@@ -232,6 +258,7 @@ namespace CsharpTask4
             Console.WriteLine("Multiply(int p1, int p2, int p3): " + thirdResult);
 
             ///////////////////////////
+            /// 
             Console.WriteLine("Choose from the menu:");
             Console.WriteLine("1) Calculate Square Area");
             Console.WriteLine("2) Calculate Rectangle Area");
@@ -265,7 +292,12 @@ namespace CsharpTask4
                     Console.WriteLine("Please choose a correct option");
                     break;
             }
-            
+            ///////////////////////////
+            /// 
+
+        
+         
+
         }
     }
 }
