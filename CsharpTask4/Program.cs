@@ -171,6 +171,40 @@ namespace CsharpTask4
         }
         ///////////////////////////////////////////////////
         //Task 12 - Student Report Card Generator
+        public static double CalculateAverage(double score1,double score2,double score3)
+        {
+            return (score1 + score2 + score3) / 3;
+        }
+        public static string GetGradeLetter(double averageScore)
+        {
+            if (averageScore >= 90)
+            {
+                return "A";
+            }
+            else if (averageScore >= 80 && averageScore < 90)
+            {
+                return "B";
+            }
+            else if (averageScore >= 70 && averageScore < 80)
+            {
+                return "C";
+            }
+            else if (averageScore >= 60 && averageScore < 70)
+            {
+                return "D";
+            }
+            else
+            {
+                return "F";
+            }
+
+        }
+        public static void PrintReportCard(string studentName, double averageScore, string gradeLetter)
+        {
+            Console.WriteLine("Student Name : " + studentName);
+            Console.WriteLine("Average Score : " + averageScore);
+            Console.WriteLine("GradeLetter : " + gradeLetter);
+        }
 
 
         static void Main(string[] args)
@@ -360,9 +394,27 @@ namespace CsharpTask4
                 }
             }
             exit = true;
-         
+
             /////////////////////////
             ///
+            Console.WriteLine("Please Enter Your Name : ");
+            string studentName = Console.ReadLine();
+
+            Console.WriteLine("Please Enter first subject scores : ");
+            double score1 = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("Please Enter second subject scores : ");
+            double score2 = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("Please Enter third subject scores : ");
+            double score3 = double.Parse(Console.ReadLine());
+
+            double averageScore = CalculateAverage(score1, score2, score3);
+
+            string gradeLetter = GetGradeLetter(averageScore);
+
+            PrintReportCard(studentName, averageScore, gradeLetter);
+
 
         }
     }
