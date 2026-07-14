@@ -6,6 +6,7 @@
         static void Main(string[] args)
         {
             //Task 1 - Fixed Grades Array
+
             //Task 2 - Dynamic To-Do List
             //Task 3 - Browsing History Stack
             //Task 4 - Customer Service Queue
