@@ -75,6 +75,20 @@
 
             /////////////////////////////
             //Task 5 - Array Grade Range
+            int[] grades = new int[5];
+             for(int i = 0; i < grades.Length; i++)
+            {
+                Console.Write("Please Enter "+ (i+1) + " Grade : ");
+                grades[i] = int.Parse(Console.ReadLine());
+                
+            }
+            Array.Sort(grades);
+            //double avgGrade = grades.Peak() / 5;
+            Console.WriteLine("Lowest Grade = " + grades[0]);
+            Console.WriteLine("Highest Grade = " + grades[4]);
+            //Two ways to get the average
+            Console.WriteLine("Average of all 5 Grades = " + grades.Average());
+            Console.WriteLine("Average of all 5 Grades = " + (grades[0]+ grades[1]+ grades[2]+ grades[3]+ grades[4])/5);
 
             //Task 6 - Filtered Shopping List
 
