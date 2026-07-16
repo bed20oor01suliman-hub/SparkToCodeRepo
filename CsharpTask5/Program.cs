@@ -1,9 +1,28 @@
-﻿using System.Runtime.ExceptionServices;
+﻿using System.Reflection.Metadata.Ecma335;
+using System.Runtime.ExceptionServices;
 
 namespace CsharpTask5
 {
     internal class Program
     {
+        //Task 9
+        public static double CalculateAverage(List<int> grades)
+        {
+            int addition = 0;
+            foreach(int grade in grades)
+            {
+                addition += grade;
+            }
+            return (double)addition/grades.Count;
+        }
+        public static int FindFirstFailing(List<int> grades)
+        {          //lambda expression
+                   //.Find() is built-in method
+                   //   =>  goes to
+                   //parameter => expression
+            return grades.Find(grade => grade < 60);
+        }
+
 
         static void Main(string[] args)
         {
@@ -183,8 +202,30 @@ namespace CsharpTask5
             /////////////////////////////
             //Task 9 - Grade Analyzer with Functions
 
+            List<int> grades = new List<int>();
+            Console.WriteLine("How many grades you want to enter ? ");
+            int number = int.Parse(Console.ReadLine());
+            Console.WriteLine("Write the grades: ");
+            for (int i = 0; i < number; i++)
+            {
+                Console.Write("Enter grade [" + (i + 1) + "]: ");
+                grades.Add(int.Parse(Console.ReadLine()));
+            }
+            double average = CalculateAverage(grades);
+            Console.WriteLine("The average :" + average);
+
+            int failing = FindFirstFailing(grades);
+            if(failing == 0)
+            {
+                Console.WriteLine("No failing grade");
+            }
+            else
+            {
+                Console.WriteLine("Failing grade is : " + failing);
+            }
 
             /////////////////////////////
+            ///
             //Task 10 - Print Queue Manager
 
 
