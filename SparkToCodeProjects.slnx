@@ -3,4 +3,5 @@
   <Project Path="CsharpTask2/CsharpTask2.csproj" Id="aec352e3-e475-4c81-97bc-96f8a6fbefe4" />
   <Project Path="CsharpTask3/CsharpTask3.csproj" />
   <Project Path="CsharpTask4/CsharpTask4.csproj" Id="b12044ee-7517-4e98-8d4b-d18d225e9564" />
+  <Project Path="CsharpTask5/CsharpTask5.csproj" Id="341ddc20-22ef-49d0-b08b-a6cdbd951121" />
 </Solution>
