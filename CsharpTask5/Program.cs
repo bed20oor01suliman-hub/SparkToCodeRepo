@@ -1,5 +1,7 @@
-﻿using System.Reflection.Metadata.Ecma335;
+﻿using System.Globalization;
+using System.Reflection.Metadata.Ecma335;
 using System.Runtime.ExceptionServices;
+using System.Threading.Tasks.Dataflow;
 
 namespace CsharpTask5
 {
@@ -22,7 +24,24 @@ namespace CsharpTask5
                    //parameter => expression
             return grades.Find(grade => grade < 60);
         }
+        //////////////////////
+        //Task10
+        public static Queue<string> RemoveJob(Queue<string> printQueueManager,string jobNames)
+        {
+            Queue<string> newQueue = new Queue<string>();
+            while (printQueueManager.Count > 0)
+            {
+                // return printQueueManager.Dequeue(jobNames); => Wronge (Dequeue does not have parameters; It removes only the first item and returns it)
+                string currentJob = printQueueManager.Dequeue();
+                if (currentJob != jobNames)
+                {
+                    newQueue.Enqueue(currentJob);
+                }
+            }
+            return newQueue;
+        }
 
+        //////////////////////////////////////////////
 
         static void Main(string[] args)
         {
@@ -202,37 +221,64 @@ namespace CsharpTask5
             /////////////////////////////
             //Task 9 - Grade Analyzer with Functions
 
-            List<int> grades = new List<int>();
-            Console.WriteLine("How many grades you want to enter ? ");
-            int number = int.Parse(Console.ReadLine());
-            Console.WriteLine("Write the grades: ");
-            for (int i = 0; i < number; i++)
-            {
-                Console.Write("Enter grade [" + (i + 1) + "]: ");
-                grades.Add(int.Parse(Console.ReadLine()));
-            }
-            double average = CalculateAverage(grades);
-            Console.WriteLine("The average :" + average);
+            //List<int> grades = new List<int>();
+            //Console.WriteLine("How many grades you want to enter ? ");
+            //int number = int.Parse(Console.ReadLine());
+            //Console.WriteLine("Write the grades: ");
+            //for (int i = 0; i < number; i++)
+            //{
+            //    Console.Write("Enter grade [" + (i + 1) + "]: ");
+            //    grades.Add(int.Parse(Console.ReadLine()));
+            //}
+            //double average = CalculateAverage(grades);
+            //Console.WriteLine("The average :" + average);
 
-            int failing = FindFirstFailing(grades);
-            if(failing == 0)
-            {
-                Console.WriteLine("No failing grade");
-            }
-            else
-            {
-                Console.WriteLine("Failing grade is : " + failing);
-            }
+            //int failing = FindFirstFailing(grades);
+            //if(failing == 0)
+            //{
+            //    Console.WriteLine("No failing grade");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Failing grade is : " + failing);
+            //}
 
             /////////////////////////////
             ///
             //Task 10 - Print Queue Manager
+            Queue<string> printQueueManager = new Queue<string>();
+            bool exit = false;
+            Console.WriteLine("Please add print job names if finish press (done) : ");
+            while (exit == false)
+            {
+                string jobNames = Console.ReadLine();
+                if (jobNames.ToLower() == "done")
+                {
+                    exit = true;
+                }
+                else
+                {
+                    printQueueManager.Enqueue(jobNames);
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("Queue before job cancelation : ");
+            foreach (string job in printQueueManager)
+            {
+                //printQueueManager.Peek(); => Peek only return first element
+                Console.WriteLine(job);
+            }
+            Console.WriteLine();
+            Console.WriteLine("Enter name of one job to cancel : ");
+            string jobToCancele = Console.ReadLine();
+            printQueueManager = RemoveJob(printQueueManager, jobToCancele);
 
-
-
-
-
-
+            Console.WriteLine();
+            Console.WriteLine("Queue after job cancelation : ");
+            foreach (string job in printQueueManager)
+            {
+                Console.WriteLine(job);
+            }
 
             ////////////////////////////////////////
             //Stack => LIFO
