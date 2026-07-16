@@ -1,4 +1,6 @@
-﻿namespace CsharpTask5
+﻿using System.Runtime.ExceptionServices;
+
+namespace CsharpTask5
 {
     internal class Program
     {
@@ -93,42 +95,96 @@
 
             /////////////////////////////
             //Task 6 - Filtered Shopping List
-            bool exit = false;
-            List<string> shoppingList = new List<string>();
-            while (exit == false)
-            {
-                Console.WriteLine("Write your shoping list if you finish write (done): ");
-                string item = Console.ReadLine();
-                if (item.ToLower() == "done")
-                {
-                    exit = true;
-                }
-                else
-                {
-                    shoppingList.Add(item.ToLower());
-                }
-            }
-            Console.WriteLine("Shopping List : ");
-            foreach(string item in shoppingList)
-            { 
-                Console.WriteLine(item.ToLower());
-            }
-            Console.WriteLine("Wirte one item you don't need : ");
-            shoppingList.Remove(Console.ReadLine().ToLower());
+            //bool exit = false;
+            //List<string> shoppingList = new List<string>();
+            //while (exit == false)
+            //{
+            //    Console.WriteLine("Write your shoping list if you finish write (done): ");
+            //    string item = Console.ReadLine();
+            //    if (item.ToLower() == "done")
+            //    {
+            //        exit = true;
+            //    }
+            //    else
+            //    {
+            //        shoppingList.Add(item.ToLower());
+            //    }
+            //}
+            //Console.WriteLine("Shopping List : ");
+            //foreach(string item in shoppingList)
+            //{ 
+            //    Console.WriteLine(item.ToLower());
+            //}
+            //Console.WriteLine("Wirte one item you don't need : ");
+            //shoppingList.Remove(Console.ReadLine().ToLower());
 
-            Console.WriteLine("Shopping List : ");
+            //Console.WriteLine("Shopping List After Removal: ");
 
-            foreach (string item in shoppingList)
-            {
-                Console.WriteLine(item.ToLower());
-            }
+            //foreach (string item in shoppingList)
+            //{
+            //    Console.WriteLine(item.ToLower());
+            //}
 
+            /////////////////////////////
             //Task 7 - High Score Podium
+            //List<int> gameScore = new List<int>(5);
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    Console.Write("Write five game scores: ");
+            //    gameScore.Add(int.Parse(Console.ReadLine()));
+            //}
+            //gameScore.Sort();
+            //gameScore.Reverse();
 
+            //Console.WriteLine("Top 3 scores");
+            //Console.WriteLine("1st place: " + gameScore[0]);
+            //Console.WriteLine("2nd place: " + gameScore[1]);
+            //Console.WriteLine("3rd place: " + gameScore[2]);
+
+
+
+            /////////////////////////////
             //Task 8 - Undo Last Action
+            //Stack<string> trackActions = new Stack<string>();
+            //bool exit = false;
+            //string write;
+            //Console.WriteLine("Please enter your action if you done press(stop): ");
+            //while (exit == false)
+            //{
+            //    write = Console.ReadLine();
 
+            //    if (write.ToLower() == "stop")
+            //    {
+            //        exit = true;
+            //    }
+            //    else
+            //    {
+            //        trackActions.Push(write);
+            //    }
+            //}
+            //Console.WriteLine("Please write (undo) : ");
+            //write = Console.ReadLine();
+            //if (write.ToLower() == "undo")
+            //{
+            //    Console.WriteLine("Undo... "+trackActions.Pop());
+            //    Console.WriteLine("Undo... "+trackActions.Pop());
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Not enough actions to undo.");
+            //}
+            //Console.WriteLine("Actions that are remain : ");
+            //foreach (string action in trackActions)
+            //{
+            //    Console.WriteLine(action);
+            //}
+
+
+            /////////////////////////////
             //Task 9 - Grade Analyzer with Functions
 
+
+            /////////////////////////////
             //Task 10 - Print Queue Manager
 
 
