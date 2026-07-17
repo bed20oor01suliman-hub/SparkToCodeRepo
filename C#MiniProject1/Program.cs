@@ -101,16 +101,24 @@ namespace BankingSystemApp
         // whatever it needs, validates it, updates the shared lists, and
         // prints the outcome. Main never reads input or prints results
         // for these services - it only shows the menu and calls them.
-        static void AddAccount(List<string> accountNumbers, string newAccountNo)
+        static void AddAccount(List<string> customerNames , 
+                               List<string> accountNumbers ,        
+                               List<double> balances,
+                               string newAccountNo)
         {
             // TODO: implement this service (see Section 3 requirements)
             List<string> accounts = new List<string>();
-            accountNumbers.Add(newAccountNo);
             while(accountNumbers.Count > 0)
             {
-                if(newAccountNo == accountNumbers[i]) {
+                if(accountNumbers.Contains(newAccountNo))
+                {
+                    Console.WriteLine("Error!!!");
+                }
+                else
+                {
+                    accountNumbers.Add(newAccountNo);
+                }
             }
-        }
 
          static void DepositMoney()
         {
