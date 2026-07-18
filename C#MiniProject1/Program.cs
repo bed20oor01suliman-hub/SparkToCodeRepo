@@ -30,7 +30,7 @@ namespace BankingSystemApp
         // EVERY function below can read and modify the same three lists
         // without needing them passed in as parameters.
         static List<string> customerNames = new List<string>();
-        static List<string> accountNumbers = new List<string>();
+        static List<int> accountNumbers = new List<int>();
         static List<double> balances = new List<double>();
         static void Main(string[] args)
         {
@@ -75,8 +75,12 @@ namespace BankingSystemApp
                         break;
                     case 2:
                         Console.WriteLine("Please enter your account number : ");
+                        int findAccount = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Please enter deposit amount : ");
+                        depositAmount = double.Parse(Console.ReadLine());
 
-                        DepositMoney();
+                        DepositMoney(accountNumbers, balances,findAccount,depositAmount,customerNames);
+
                         break;
                     case 3:
                         WithdrawMoney();
@@ -140,10 +144,33 @@ namespace BankingSystemApp
             Console.WriteLine($"Account Balance : {depositAmount} ");
 
         }
-         static void DepositMoney()
+         static void DepositMoney(List<int> accountNumbers,
+                                           List<double> balances,
+                                           int findAccount, 
+                                           double depositAmount,
+                                           List<string> customerNames)
         {
             // TODO: implement this service (see Section 3 requirements)
+            int index = accountNumbers.IndexOf(findAccount);
 
+            if (index < 0)
+            {
+                Console.WriteLine("Account not fond try again");
+                return;
+            }
+            else
+            {
+                if (depositAmount < 0)
+                {
+                    Console.WriteLine("Wrong amount only positive numbers are accepted");
+                    return;
+                }
+                balances[index] += depositAmount;
+                Console.WriteLine("Amount updated successfully!");
+                Console.WriteLine($"Account Owner : {customerNames[index]}");
+                Console.WriteLine($"Account Number : {accountNumbers[index]} ");
+                Console.WriteLine($"Account Balance : {balances[index]} ");
+            }
 
         }
         static void WithdrawMoney()
