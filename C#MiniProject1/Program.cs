@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 namespace BankingSystemApp
 {
     internal class Program
@@ -49,8 +50,9 @@ namespace BankingSystemApp
                 int choice;
                 try
                 {
-                }
+
                     choice = int.Parse(Console.ReadLine());
+                }
                 catch (Exception)
                 {
                     Console.WriteLine("Invalid input. Please enter a number from 1 to 8.");
@@ -61,14 +63,19 @@ namespace BankingSystemApp
                     case 1:
                         Console.WriteLine("Please enter your name : ");
                         string name = Console.ReadLine();
-                        customerNames.Add(name);
 
                         Console.WriteLine("Please enter new account number : ");
-                        string newAccountNo = Console.ReadLine();
-                        AddAccount();
+                        int newAccountNo = int.Parse(Console.ReadLine());
+
+                        Console.WriteLine("Please enter  initial deposit amount : ");
+                        double depositAmount = double.Parse(Console.ReadLine());
+                        AddAccount(customerNames, accountNumbers, balances, newAccountNo, depositAmount, name);
+
 
                         break;
                     case 2:
+                        Console.WriteLine("Please enter your account number : ");
+
                         DepositMoney();
                         break;
                     case 3:
@@ -101,28 +108,43 @@ namespace BankingSystemApp
         // whatever it needs, validates it, updates the shared lists, and
         // prints the outcome. Main never reads input or prints results
         // for these services - it only shows the menu and calls them.
-        static void AddAccount(List<string> customerNames , 
-                               List<string> accountNumbers ,        
+        static void AddAccount(List<string> customerNames,
+                               List<int> accountNumbers,
                                List<double> balances,
-                               string newAccountNo)
+                               int newAccountNo,
+                               double depositAmount,
+                               string name)
         {
             // TODO: implement this service (see Section 3 requirements)
-            List<string> accounts = new List<string>();
-            while(accountNumbers.Count > 0)
+            foreach (int account in accountNumbers)
             {
-                if(accountNumbers.Contains(newAccountNo))
+                if (account == newAccountNo)
                 {
                     Console.WriteLine("Error!!!");
+                    return;
                 }
-                else
-                {
-                    accountNumbers.Add(newAccountNo);
-                }
+
+            }
+            if (depositAmount < 0)
+            {
+                Console.WriteLine("Wrong amount only positive numbers are accepted");
+                return;
             }
 
+            customerNames.Add(name);
+            accountNumbers.Add(newAccountNo);
+            balances.Add(depositAmount);
+            Console.WriteLine("New account added successfully!");
+            Console.WriteLine($"Account Owner : {name}");
+            Console.WriteLine($"Account Number : {newAccountNo} ");
+            Console.WriteLine($"Account Balance : {depositAmount} ");
+
+        }
          static void DepositMoney()
         {
             // TODO: implement this service (see Section 3 requirements)
+
+
         }
         static void WithdrawMoney()
         {
