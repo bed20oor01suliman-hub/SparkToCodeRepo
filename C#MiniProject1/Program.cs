@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Xml.Linq;
 namespace BankingSystemApp
 {
@@ -79,17 +80,37 @@ namespace BankingSystemApp
                         Console.WriteLine("Please enter deposit amount : ");
                         depositAmount = double.Parse(Console.ReadLine());
 
-                        DepositMoney(accountNumbers, balances,findAccount,depositAmount,customerNames);
+                        DepositMoney(accountNumbers, balances, findAccount, depositAmount, customerNames);
 
                         break;
                     case 3:
-                        WithdrawMoney();
+                        Console.WriteLine("Please enter your account number : ");
+                        findAccount = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Please enter withdrawal amount : ");
+                        double withdrawalAmount = double.Parse(Console.ReadLine());
+                        WithdrawMoney(findAccount, withdrawalAmount, balances,
+                                      accountNumbers, customerNames);
                         break;
                     case 4:
-                        ShowBalance();
+                        Console.WriteLine("Please enter account number : ");
+                        findAccount = int.Parse(Console.ReadLine());
+
+                        ShowBalance(findAccount, balances, accountNumbers, customerNames);
                         break;
                     case 5:
-                        TransferAmount();
+                        //Ask for the sender's account number and the receiver's account number, and find both indexes.
+                        Console.WriteLine("Please enter sender's account number : ");
+                        int senderAccount = int.Parse(Console.ReadLine());
+
+                        Console.WriteLine("Please enter receiver's account number : ");
+                        int receiverAccount = int.Parse(Console.ReadLine());
+
+                        Console.WriteLine("Please enter transfer amount : ");
+                        double transferAmount = double.Parse(Console.ReadLine());
+
+
+                        TransferAmount(senderAccount, receiverAccount, transferAmount,
+                                   balances, accountNumbers);
                         break;
                     case 6:
                         // TODO: call your first custom service function here
@@ -129,7 +150,7 @@ namespace BankingSystemApp
                 }
 
             }
-            if (depositAmount < 0)
+            if (depositAmount <= 0)
             {
                 Console.WriteLine("Wrong amount only positive numbers are accepted");
                 return;
@@ -141,14 +162,14 @@ namespace BankingSystemApp
             Console.WriteLine("New account added successfully!");
             Console.WriteLine($"Account Owner : {name}");
             Console.WriteLine($"Account Number : {newAccountNo} ");
-            Console.WriteLine($"Account Balance : {depositAmount} ");
+            Console.WriteLine($"Account Balance : {balances} ");
 
         }
-         static void DepositMoney(List<int> accountNumbers,
-                                           List<double> balances,
-                                           int findAccount, 
-                                           double depositAmount,
-                                           List<string> customerNames)
+        static void DepositMoney(List<int> accountNumbers,
+                                          List<double> balances,
+                                          int findAccount,
+                                          double depositAmount,
+                                          List<string> customerNames)
         {
             // TODO: implement this service (see Section 3 requirements)
             int index = accountNumbers.IndexOf(findAccount);
@@ -160,7 +181,7 @@ namespace BankingSystemApp
             }
             else
             {
-                if (depositAmount < 0)
+                if (depositAmount <= 0)
                 {
                     Console.WriteLine("Wrong amount only positive numbers are accepted");
                     return;
@@ -173,19 +194,85 @@ namespace BankingSystemApp
             }
 
         }
-        static void WithdrawMoney()
+        static void WithdrawMoney(int findAccount,
+                                  double withdrawalAmount,
+                                  List<double> balances,
+                                  List<int> accountNumbers,
+                                  List<string> customerNames)
         {
             // TODO: implement this service (see Section 3 requirements)
+            int index = accountNumbers.IndexOf(findAccount);
+            if (index < 0)
+            {
+                Console.WriteLine("Account not fond try again");
+                return;
+            }
+            if (withdrawalAmount > balances[index])
+            {
+                Console.WriteLine("Withdrawal Amount more than Balance!");
+                return;
+            }
+            if (withdrawalAmount <= 0)
+            {
+                Console.WriteLine("Withdrawal Amount must be more than zero");
+                return;
+            }
+            balances[index] -= withdrawalAmount;
+            Console.WriteLine("Amount withdrawn successfully!");
+            Console.WriteLine($"Account Owner : {customerNames[index]}");
+            Console.WriteLine($"Account Number : {accountNumbers[index]} ");
+            Console.WriteLine($"Account Balance : {balances[index]} ");
         }
-        static void ShowBalance()
+
+        static void ShowBalance(int findAccount,
+                                List<double> balances,
+                                List<int> accountNumbers,
+                                List<string> customerNames)
         {
             // TODO: implement this service (see Section 3 requirements)
+            int index = accountNumbers.IndexOf(findAccount);
+            if (index < 0)
+            {
+                Console.WriteLine("Account not fond try again");
+                return;
+            }
+            Console.WriteLine("Account Details: ");
+            Console.WriteLine($"Account Owner : {customerNames[index]}");
+            Console.WriteLine($"Account Number : {accountNumbers[index]} ");
+            Console.WriteLine($"Account Balance : {balances[index]} ");
         }
-        static void TransferAmount()
+        static void TransferAmount(int senderAccount, int receiverAccount,double transferAmount,
+                                   List<double> balances,List<int> accountNumbers)
         {
             // TODO: implement this service (see Section 3 requirements)
+            int senderIndex = accountNumbers.IndexOf(senderAccount);
+            int receiverIndex = accountNumbers.IndexOf(receiverAccount);
+            if (senderIndex < 0 || receiverIndex < 0)
+            {
+                Console.WriteLine("Account not fond try again");
+                return;
+            }
+
+            if(transferAmount > balances[senderIndex])
+            {
+                Console.WriteLine("Sender does not have sufficient balance");
+                return;
+
+            }
+            if (transferAmount <= 0)
+            {
+                Console.WriteLine("Transfer Amount must be more than zero");
+                return;
+            }
+             balances[senderIndex] -= transferAmount;
+             balances[receiverIndex] += transferAmount;
+
+            Console.WriteLine("Process done successfully ");
+            Console.WriteLine($"Sender Account Balance: {balances[senderIndex]}");
+            Console.WriteLine($"Receiver Account Balance:  {balances[receiverIndex]} ");
+
+            // TODO: write two more void, no-parameter functions here for
+            // your own custom services (option 6 and option 7)
         }
-        // TODO: write two more void, no-parameter functions here for
-        // your own custom services (option 6 and option 7)
     }
 }
