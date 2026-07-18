@@ -19,10 +19,7 @@
 //    }
 //}
 
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Xml.Linq;
+
 namespace BankingSystemApp
 {
     internal class Program
@@ -44,9 +41,10 @@ namespace BankingSystemApp
                 Console.WriteLine("3. Withdraw Money");
                 Console.WriteLine("4. Show Balance");
                 Console.WriteLine("5. Transfer Amount");
-                Console.WriteLine("6. <your 1st custom service - choose a name>");
-                Console.WriteLine("7. <your 2nd custom service - choose a name>");
-                Console.WriteLine("8. Exit");
+                Console.WriteLine("6. List All Acounts");
+                Console.WriteLine("7. Close Account");
+                Console.WriteLine("8. Update user name");
+                Console.WriteLine("9. Exit");
                 Console.Write("Choose an option: ");
                 int choice;
                 try
@@ -114,11 +112,27 @@ namespace BankingSystemApp
                         break;
                     case 6:
                         // TODO: call your first custom service function here
+                        //Update user name
+                        Console.WriteLine("Please enter your account number : ");
+                        findAccount = int.Parse(Console.ReadLine());
+
+                        Console.WriteLine("Please enter the new name : ");
+                        string newName = Console.ReadLine();
+                        UpdateUserName(findAccount, accountNumbers, customerNames, newName, balances);
+
+
                         break;
                     case 7:
-                        // TODO: call your second custom service function here
+                        ListAllAccounts(accountNumbers, customerNames, balances);
                         break;
                     case 8:
+                        // TODO: call your second custom service function here
+                        //Delete account
+                        Console.WriteLine("Please enter your account number : ");
+                        findAccount = int.Parse(Console.ReadLine());
+                        CloseAccount(findAccount, accountNumbers, customerNames, balances);
+                        break;
+                    case 9:
                         exitApp = true;
                         Console.WriteLine("Thank you for banking with Spark Bank. Goodbye!");
                         break;
@@ -241,8 +255,8 @@ namespace BankingSystemApp
             Console.WriteLine($"Account Number : {accountNumbers[index]} ");
             Console.WriteLine($"Account Balance : {balances[index]} ");
         }
-        static void TransferAmount(int senderAccount, int receiverAccount,double transferAmount,
-                                   List<double> balances,List<int> accountNumbers)
+        static void TransferAmount(int senderAccount, int receiverAccount, double transferAmount,
+                                   List<double> balances, List<int> accountNumbers)
         {
             // TODO: implement this service (see Section 3 requirements)
             int senderIndex = accountNumbers.IndexOf(senderAccount);
@@ -253,7 +267,7 @@ namespace BankingSystemApp
                 return;
             }
 
-            if(transferAmount > balances[senderIndex])
+            if (transferAmount > balances[senderIndex])
             {
                 Console.WriteLine("Sender does not have sufficient balance");
                 return;
@@ -264,15 +278,65 @@ namespace BankingSystemApp
                 Console.WriteLine("Transfer Amount must be more than zero");
                 return;
             }
-             balances[senderIndex] -= transferAmount;
-             balances[receiverIndex] += transferAmount;
+            balances[senderIndex] -= transferAmount;
+            balances[receiverIndex] += transferAmount;
 
             Console.WriteLine("Process done successfully ");
             Console.WriteLine($"Sender Account Balance: {balances[senderIndex]}");
             Console.WriteLine($"Receiver Account Balance:  {balances[receiverIndex]} ");
-
+        }
             // TODO: write two more void, no-parameter functions here for
             // your own custom services (option 6 and option 7)
-        }
+            static void UpdateUserName(int findAccount,List<int> accountNumbers,List<string> customerNames,
+                                       string newName,List<double> balances)
+            {
+                int index = accountNumbers.IndexOf(findAccount);
+
+                if (index < 0)
+                {
+                    Console.WriteLine("Account does not exist");
+                    return;
+                }
+
+                customerNames[index] = newName;
+                Console.WriteLine($"Customer details at account {findAccount} updated successfully");
+                Console.WriteLine($"Customer name is :  {customerNames[index]}");
+                Console.WriteLine($"Customer balance :  {balances[index]}");
+
+            }
+            static void ListAllAccounts(List<int> accountNumbers,
+                                        List<string> customerNames,
+                                        List<double> balances)
+             {
+            if (accountNumbers.Count == 0)
+            {
+                Console.WriteLine("No accounts exist.");
+                return;
+            }
+
+            for (int i = 0; i < accountNumbers.Count; i++)
+            {
+                Console.WriteLine("---List of accounts---");
+                Console.WriteLine($"Customer Name: {customerNames[i]}");
+                Console.WriteLine($"Account Number: {accountNumbers[i]}");
+                Console.WriteLine($"Customer balance: {balances[i]}");
+            }
+            }
+        ///////////////////////
+        static void CloseAccount(int findAccount,List<int> accountNumbers,List<string> customerNames, List<double> balances)
+            {
+            int index = accountNumbers.IndexOf(findAccount);
+
+            if (index < 0)
+            {
+                Console.WriteLine("Account does not exist");
+                return;
+            }
+            accountNumbers.RemoveAt(index);
+            customerNames.RemoveAt(index);
+            balances.RemoveAt(index);
+            Console.WriteLine("Account deleted successfully");
+            }
+
     }
 }
