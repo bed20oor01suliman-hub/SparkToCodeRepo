@@ -41,9 +41,9 @@ namespace BankingSystemApp
                 Console.WriteLine("3. Withdraw Money");
                 Console.WriteLine("4. Show Balance");
                 Console.WriteLine("5. Transfer Amount");
-                Console.WriteLine("6. List All Acounts");
-                Console.WriteLine("7. Close Account");
-                Console.WriteLine("8. Update user name");
+                Console.WriteLine("6. Update user name");
+                Console.WriteLine("7. List All Acounts");
+                Console.WriteLine("8. Close Account");
                 Console.WriteLine("9. Exit");
                 Console.Write("Choose an option: ");
                 int choice;
@@ -176,7 +176,7 @@ namespace BankingSystemApp
             Console.WriteLine("New account added successfully!");
             Console.WriteLine($"Account Owner : {name}");
             Console.WriteLine($"Account Number : {newAccountNo} ");
-            Console.WriteLine($"Account Balance : {balances} ");
+            Console.WriteLine($"Account Balance : {depositAmount} ");
 
         }
         static void DepositMoney(List<int> accountNumbers,
