@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/Solution Items/">
     <File Path="Database_Tasks/Airline Information System  ERDiagram.drawio.png" />
+    <File Path="Database_Tasks/Airline Information System ERDiagram.drawio.png" />
   </Folder>
   <Project Path="C#MiniProject1/C#MiniProject1.csproj" Id="751474bc-0b9e-4ec3-a62e-3c3adabe1152" />
   <Project Path="CsharpTask1/CsharpTask1.csproj" Id="c84b9fc6-fbf1-4360-a03c-aa8ea3d362fa" />
