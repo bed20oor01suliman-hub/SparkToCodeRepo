@@ -1,0 +1,99 @@
+--CREATE DATABASE CompanyDB;
+
+USE CompanyDB;
+GO
+
+CREATE TABLE EMPLOYEE
+(
+    SSN CHAR(10) PRIMARY KEY,
+    Fname VARCHAR(40) NOT NULL,
+    Minit CHAR(1),
+    Lname VARCHAR(40) NOT NULL,
+    Bdate DATE,
+    Address VARCHAR(50) NOT NULL,
+    Sex CHAR(1),
+    Salary DECIMAL(10,2),
+
+    Super_ssn CHAR(10),
+    Dno INT
+);
+
+CREATE TABLE DEPARTMENT
+(
+    Dnumber INT PRIMARY KEY,
+    Dname VARCHAR(40) NOT NULL,
+
+    Mgr_ssn CHAR(10),
+    Mgr_start_date DATE
+);
+
+CREATE TABLE DEPT_LOCATIONS
+(
+    Dnumber INT,
+    Dlocation VARCHAR(40),
+
+    PRIMARY KEY (Dnumber, Dlocation),
+
+    FOREIGN KEY (Dnumber)
+    REFERENCES DEPARTMENT(Dnumber)
+);
+
+CREATE TABLE PROJECT
+(
+    Pnumber INT PRIMARY KEY,
+    Pname VARCHAR(40) NOT NULL,
+    Plocation VARCHAR(40),
+
+    Dnum INT,
+
+    FOREIGN KEY (Dnum)
+    REFERENCES DEPARTMENT(Dnumber)
+);
+
+
+CREATE TABLE WORKS_ON
+(
+    Essn CHAR(10),
+    Pno INT,
+    Hours DECIMAL(4,1),
+
+    PRIMARY KEY (Essn, Pno),
+
+    FOREIGN KEY (Essn)
+    REFERENCES EMPLOYEE(SSN),
+
+    FOREIGN KEY (Pno)
+    REFERENCES PROJECT(Pnumber)
+);
+
+
+CREATE TABLE DEPENDENT
+(
+    Essn CHAR(10),
+    Dependent_name VARCHAR(40),
+    Sex CHAR(1),
+    Bdate DATE,
+    Relationship VARCHAR(30),
+
+    PRIMARY KEY (Essn, Dependent_name),
+
+    FOREIGN KEY (Essn)
+    REFERENCES EMPLOYEE(SSN)
+);
+
+
+
+ALTER TABLE EMPLOYEE
+ADD CONSTRAINT FK_EMPLOYEE_DEPARTMENT
+FOREIGN KEY (Dno)
+REFERENCES DEPARTMENT(Dnumber);
+
+ALTER TABLE EMPLOYEE
+ADD CONSTRAINT FK_EMPLOYEE_SUPERVISOR
+FOREIGN KEY (Super_ssn)
+REFERENCES EMPLOYEE(SSN);
+
+ALTER TABLE DEPARTMENT
+ADD CONSTRAINT FK_DEPARTMENT_MANAGER
+FOREIGN KEY (Mgr_ssn)
+REFERENCES EMPLOYEE(SSN);
