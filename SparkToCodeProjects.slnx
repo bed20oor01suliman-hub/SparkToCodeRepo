@@ -14,4 +14,5 @@
   <Project Path="CsharpTask3/CsharpTask3.csproj" />
   <Project Path="CsharpTask4/CsharpTask4.csproj" Id="b12044ee-7517-4e98-8d4b-d18d225e9564" />
   <Project Path="CsharpTask5/CsharpTask5.csproj" Id="341ddc20-22ef-49d0-b08b-a6cdbd951121" />
+  <Project Path="EFCoreProject/EFCoreProject.csproj" Id="0b1daa20-9477-43ed-874d-62c627869ae5" />
 </Solution>
