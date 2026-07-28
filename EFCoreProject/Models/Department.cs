@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EFCoreProject.Models
 {
-    internal class Department
+    public class Department
     {
     }
 }
