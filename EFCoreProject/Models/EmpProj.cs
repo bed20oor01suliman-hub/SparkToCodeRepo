@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace EFCoreProject.Models
 {
+    [PrimaryKey(nameof(EmployeeID), nameof(ProjectID))]
     public class EmpProj //[Third table]
     {
         //key of 1 go to many
