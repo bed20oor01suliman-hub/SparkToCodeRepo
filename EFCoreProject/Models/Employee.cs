@@ -13,10 +13,14 @@ namespace EFCoreProject.Models
         public int EmployeeAge { get; set; }
         public double EmployeeSalary { get; set; }
 
-
+        //Works for
+        //1-M
         [ForeignKey("D")]
         public int DepartmentID { get; set; } //1,2,3
 
         public Department D {  get; set; }
+        //Dependent relation
+        //1-1
+        public Dependent Dep { get; set; }
     }
 }

@@ -13,6 +13,8 @@ namespace EFCoreProject.Models
         //1{DEP} => 1 {EMP}
         //------------------
         //1      =>  M
+        //Works for
+        //1-M
         public List<Employee> Employees { get; set; }
     }
 }
