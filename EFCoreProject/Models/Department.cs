@@ -25,8 +25,9 @@ namespace EFCoreProject.Models
         //manage 1-1
         [ForeignKey("ManagEmp")]
         public int EmployeeID { get; set; }//id of patial[emp] put in total[dep]
-
         public Employee ManagEmp {  get; set; }
+        public DateTime ManagStartDate { get; set; } //relation attribute
+
 
     }
 }

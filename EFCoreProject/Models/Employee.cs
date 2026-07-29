@@ -38,5 +38,13 @@ namespace EFCoreProject.Models
         //employee is partial so its key go to the total which is department
         [InverseProperty("ManagEmp")]
         public Department ManagDep { get; set; } //1 relationship
+
+        //Self relationship [Supervision]
+        [InverseProperty("Supervisor")]
+        public List<Employee> Supervisee { get; set; }
+        [ForeignKey("Supervisor")]
+        public int SupervisorID { get; set; }
+        public Employee Supervisor { get; set; } 
+
     }
 }
