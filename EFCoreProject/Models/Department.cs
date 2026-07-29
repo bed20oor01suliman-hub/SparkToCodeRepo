@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace EFCoreProject.Models
@@ -13,8 +14,16 @@ namespace EFCoreProject.Models
         //1{DEP} => 1 {EMP}
         //------------------
         //1      =>  M
-        //Works for
+            //Works for
         //1-M
         public List<Employee> Employees { get; set; }
+
+
+        //manage 1-1
+        [ForeignKey("ManagEmp")]
+        public int EmployeeID { get; set; }//id of patial[emp] put in total[dep]
+
+        public Employee ManagEmp {  get; set; }
+
     }
 }
