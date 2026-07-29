@@ -11,14 +11,14 @@ namespace EFCoreProject
         //1. register  models
                //DbSet == List
         public DbSet<Employee> employees {  get; set; }
-        public DbSet<Department> department { get; set; }
+        //public DbSet<Department> department { get; set; }
 
         //2. connect to database
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlServer(
                 //.==LocalHost  
-                "Server=.;Database=CompanyProjectDB;Trusted_Connection=True;TrustServerCertificate=True;");//connection string
+                "Server=DESKTOP-N8ECQAL\\SQLEXPRESS;Database=CompanyProjectDB;Trusted_Connection=True;TrustServerCertificate=True;");//connection string
         }
 
     }
