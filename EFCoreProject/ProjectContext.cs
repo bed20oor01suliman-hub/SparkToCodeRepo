@@ -11,7 +11,7 @@ namespace EFCoreProject
         //1. register  models
                //DbSet == List
         public DbSet<Employee> employees {  get; set; }
-        //public DbSet<Department> department { get; set; }
+        public DbSet<Department> department { get; set; }
 
         //2. connect to database
         protected override void OnConfiguring(DbContextOptionsBuilder options)
