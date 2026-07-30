@@ -12,6 +12,11 @@ namespace EFCoreProject
                //DbSet == List
         public DbSet<Employee> employees {  get; set; }
         public DbSet<Department> department { get; set; }
+        public DbSet<Dependent> dependents { get; set; }
+        public DbSet<Project> projects { get; set; }
+        public DbSet<DeptLocation_MultiValueAttribute_> deptLocations { get; set; }
+        public DbSet<EmpProj> empProjs { get; set; }
+
 
         //2. connect to database
         protected override void OnConfiguring(DbContextOptionsBuilder options)
