@@ -1,6 +1,9 @@
-﻿namespace WebAPICoreProject
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace WebAPICoreProject
 {
-    public class ProjectContext
+    public class ProjectContext : DbContext 
     {
+
     }
 }
