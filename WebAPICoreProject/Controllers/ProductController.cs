@@ -22,7 +22,7 @@ namespace WebAPICoreProject.Controllers
         //                  "ProductPrice":"320.5","CategoryID":2}
         //Sen reques ==>> call function
         [HttpPost("AddProduct")]
-        public void AddProduct(Product p)
+        public IActionResult AddProduct(Product p)
         {
 
             //was done in EFCore
@@ -38,6 +38,8 @@ namespace WebAPICoreProject.Controllers
 
             context.Products.Add(p);
             context.SaveChanges();
+            //response
+            return Ok(p.ProductID);
         }
 
         //Request URL http://localhost:5001/Product/RemoveProduct?id=3
@@ -46,70 +48,74 @@ namespace WebAPICoreProject.Controllers
         //Sen reques ==>> call function
 
         [HttpDelete("RemoveProduct")]
-        public void RemoveProduct(int id)
-        {
+        public IActionResult RemoveProduct(int id)
+        { 
             Product p = context.Products.FirstOrDefault(p => p.ProductID == id );
             if (p == null)
             {
-
+                return NotFound("Product not found");
             }
 
             else
             {
                 context.Products.Remove(p);
                 context.SaveChanges();
+                return Ok("Removed successfuly");
             }
 
         }
 
         [HttpPatch("UpdateProductPrice")] //for singleupdate
-        public void UpdateProductPrice(int id,double newPrice)
+        public IActionResult UpdateProductPrice(int id,double newPrice)
         {
             Product p = context.Products.FirstOrDefault(p => p.ProductID == id);
             p.ProductPrice = newPrice;
             context.SaveChanges();
+            return Ok();
         }
 
         [HttpPatch("UpdateProductName")] //for singleupdate
-        public void UpdateProductName(int id, string newName)
+        public IActionResult UpdateProductName(int id, string newName)
         {
             Product p = context.Products.FirstOrDefault(p => p.ProductID == id);
             p.ProductName = newName;
-            context.SaveChanges(); 
+            context.SaveChanges();
+            return Ok();
         }
 
         [HttpPut("UpdateProduct")] //for full update
         //update full product
-        public void UpdateProduct(int id, Product newProduct)
+        public IActionResult UpdateProduct(int id, Product newProduct)
         {
             Product p = context.Products.FirstOrDefault(p => p.ProductID == id);
             p.ProductName = newProduct.ProductName;
             p.ProductPrice = newProduct.ProductPrice;
             p.ProductDescription = newProduct.ProductDescription;
             context.SaveChanges();
+            return Ok();
         }
 
         [HttpGet("GetProduct")]
         //singl product
-        public Product GetProduct(int id)
+        public IActionResult GetProduct(int id)
         {
             Product p = context.Products.FirstOrDefault(p => p.ProductID == id);
-            return p;
+            return Ok(p);
         }
 
         [HttpGet("GetAllProducts")]
         //all products
-        public List<Product> GetAllProducts()
+        public IActionResult GetAllProducts()
         {
             List<Product> products = context.Products.ToList();
-            return products;
+            return Ok(products);
         }
 
         [HttpGet("GetByName")]
-        public List<Product> GetByName(string name)
+        public IActionResult GetByName(string name)
         {
             List<Product> products = context.Products.Where(p => p.ProductName.Contains(name)).ToList();
-            return products;
+            return Ok(products);
         }
 
     }

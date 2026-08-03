@@ -9,13 +9,20 @@ namespace WebAPICoreProject.Models
         [Key]
         [JsonIgnore]
         public int ProductID { get; set; }
+
+        [Required]
         public string ProductName { get; set; }
+
+        [Required]
         public string ProductDescription { get; set; }
+
+        [Required]
         public double ProductPrice { get; set; }
 
         [ForeignKey("_category")]
         public int CategoryID { get; set; }
 
+        [JsonIgnore]
         public Category _category { get; set; } //1
 
 
