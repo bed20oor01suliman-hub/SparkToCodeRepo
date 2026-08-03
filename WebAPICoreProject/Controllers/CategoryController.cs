@@ -1,8 +1,11 @@
-﻿using WebAPICoreProject.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using WebAPICoreProject.Models;
 
-namespace WebAPICoreProject.Controllers
+namespace WebAPICoreProject.Controllers 
 {
-    public class CategoryController
+    [ApiController]
+    [Route("Category")]
+    public class CategoryController : ControllerBase
     {
         private ProjectContext context;
 
