@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 namespace WebAPICoreProject
 {
@@ -9,11 +10,42 @@ namespace WebAPICoreProject
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            //DBContext
             // Add services to the container.
             builder.Services.AddDbContext<ProjectContext>(options => 
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddControllers();
+
+            //swagger
+            //api function builder
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "Enter your JWT token in the box below"
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                   {
+                     new OpenApiSecurityScheme
+                   {
+                    Reference = new OpenApiReference
+                        {
+                        Type = ReferenceType.SecurityScheme,
+                        Id   = "Bearer"
+                        }
+                    },
+                    new List<string>()
+                    }
+                });
+            });
 
 
             var app = builder.Build();
@@ -21,6 +53,9 @@ namespace WebAPICoreProject
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
+                //swagger api pipline
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
 
             app.UseHttpsRedirection();
