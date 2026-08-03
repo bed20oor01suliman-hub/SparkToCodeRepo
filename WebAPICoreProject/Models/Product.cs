@@ -23,7 +23,7 @@ namespace WebAPICoreProject.Models
         public int CategoryID { get; set; }
 
         [JsonIgnore]
-        public Category _category { get; set; } //1
+        public Category? _category { get; set; } //1
 
 
     }

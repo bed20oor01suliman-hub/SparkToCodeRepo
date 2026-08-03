@@ -17,7 +17,7 @@ namespace WebAPICoreProject.Models
 
         [JsonIgnore]
         //[1] Category : [M] Products
-        public List<Product> products { get; set; } //M
+        public List<Product>? products { get; set; } //M
 
 
 

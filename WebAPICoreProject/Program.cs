@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
 namespace WebAPICoreProject
@@ -12,10 +13,12 @@ namespace WebAPICoreProject
 
             //DBContext
             // Add services to the container.
-            builder.Services.AddDbContext<ProjectContext>(options => 
+            builder.Services.AddDbContext<ProjectContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            builder.Services.AddControllers();
+            //builder.Services.AddControllers();
+            builder.Services.AddControllers(options => { 
+            options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true; });
 
             //swagger
             //api function builder
